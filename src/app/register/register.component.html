@@ -1,0 +1,137 @@
+<form [formGroup]="registerFormGroup">
+  <div class="row">
+    <h2 class="h3 mb-3 font-weight-normal">Add to Directory</h2>
+  </div>
+
+  <div class="hr">
+    <hr>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="firstname">First name</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="firstname"  [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter first name" formControlName="firstName">
+      <label class="helperText">(Maximum 30 characters)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="lastname">Last name</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="lastname" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter last name" formControlName="lastName">
+      <label class="helperText">(Maximum 30 characters)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="age">Age</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="age" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter age" formControlName="age">
+      <label class="helperText">(Must be between 1 and 150 years)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="address">Street address</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="address" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter address" formControlName="address">
+      <label class="helperText">(Maximum 75 characters)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="city">City</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="city" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter city" formControlName="city">
+      <label class="helperText">(Maximum 30 characters)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="zip">Zip</label>
+    </div>
+    <div class="col span-1-of-3">
+      <input id="zip" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter zip code" formControlName="zip">
+      <label class="helperText">(Maximum 15 characters)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="country">Country</label>
+    </div>
+    <div class="col span-1-of-3 ">
+      <div class="dropdown">
+        <select id="country" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter country" formControlName="country" (change)="updateState($event)">
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst">*</label>
+      <label for="state">State</label>
+    </div>
+    <div class="col span-1-of-3">
+      <select id="state" [ngClass]="{'invalid-field': isAnyFieldInvalid, 'form-control': true}" placeholder="Enter state" formControlName="state">
+        <option *ngFor="let state of states" [value]="state">{{state}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst"> </label>
+      <label for="age">Interests</label>
+    </div>
+    <div class="col span-1-of-3">
+      <textarea id="interests" class="form-control" placeholder="Enter interests" formControlName="interests"></textarea>
+      <label class="helperText" id="interestHelper">(Max 255 letters)</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-1-of-3">
+      <label class="reqAst"> </label>
+      <label>Upload image</label>
+    </div>
+    <div class="col span-1-of-3 button">
+      <input #fileInput type="file"  name="file" id="file" class="inputfile" accept="image/*" (change)="onFileSelected($event)" />
+      <label class="helperText">(Only Image format accepted , max size 1MB)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-1-of-3">
+    </div>
+    <div class="col span-1-of-3 button">
+      <button  type="submit"  class="btn btn-lg btn-primary btn-block trigger_popup_fricc_r" (click)="register()">Add</button>
+    </div>
+    <div style="float: right;" class="alert alert-success" role="alert" *ngIf ="showSuccess == true"> User added successfully !</div>
+    <div style="float: right; " class="alert alert-danger" role="alert" *ngIf="showError == true"> Please check the form !</div>
+    <div style="float: right;" class="alert alert-danger" role="alert" *ngIf ="showImageSize == true"> File size is larger than 1MB !!</div>
+    <div style="float: right;" class="alert alert-danger" role="alert" *ngIf ="showNotImage == true"> Not an Image !</div>
+  </div>
+
+</form>
+
+

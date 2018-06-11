@@ -1,0 +1,21 @@
+<header>
+  <nav class="main-nav">
+    <div class="row">
+       <h1>{{title}}</h1>
+    </div>
+  </nav>
+</header>
+<div class="loader" *ngIf="spinnerFlag">
+  <div class="loader1">
+    <svg>
+        <use href="#" fill="blue" />
+    </svg>
+  </div>
+</div>
+<section class="search-section" id="searchPerson">
+  <app-search (spinnerActive)="setSpinnerFlag($event)"></app-search>
+</section>
+
+<section class="add-section" id="addPerson">
+  <app-register (spinnerActive)="setSpinnerFlag($event)"></app-register>
+</section>
